@@ -84,6 +84,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: api-metrics
-          path: metrics-sns-resolver-get_names.csv
+          name: api-metrics-sns-resolver-get_names
+          path: metrics.csv
           retention-days: 7
