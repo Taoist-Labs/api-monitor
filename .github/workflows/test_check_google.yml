@@ -1,0 +1,61 @@
+name: Check Google
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # Runs every 15 minutes
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check API Status and Monitor Response Time
+        id: api_check
+        run: |
+          start_time=$(date +%s%N)
+          
+          response=$(curl -s -w "\n%{http_code}" -X GET \
+            https://www.google.com \
+            -H "Content-Type: application/json")
+          
+          end_time=$(date +%s%N)
+          duration=$((($end_time - $start_time)/1000000))
+          
+          http_code=$(echo "$response" | tail -n1)
+          response_body=$(echo "$response" | sed '$d')
+          
+          timestamp=$(date +%s)
+          
+          # Create metrics file if it doesn't exist
+          if [ ! -f metrics.csv ]; then
+            echo "timestamp,commit_sha,http_code,response_time_ms,status" > metrics.csv
+          fi
+          
+          # Determine status
+          if [ "$http_code" -eq 200 ]; then
+            status="success"
+          else
+            status="failure"
+          fi
+          
+          # Append metrics
+          echo "$timestamp,${GITHUB_SHA},$http_code,$duration,$status" >> metrics.csv
+          
+          # Output metrics for logging
+          echo "Timestamp: $(date -d @$timestamp)"
+          echo "Commit SHA: ${GITHUB_SHA}"
+          echo "HTTP Code: $http_code"
+          echo "Response Time: ${duration}ms"
+          echo "Status: $status"
+
+      - name: Upload Metrics
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: api-metrics-sns-resolver-get_names
+          path: metrics.csv
+          retention-days: 7
