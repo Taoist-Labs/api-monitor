@@ -19,8 +19,9 @@ jobs:
           start_time=$(date +%s%N)
           
           response=$(curl -s -w "\n%{http_code}" -X GET \
-            http://43.163.236.238/app/alive \
-            -H "Content-Type: application/json")
+            http://43.156.145.70/sns/resolver/get_names \
+            -H "Content-Type: application/json" \
+            -d '["0x2016086159ed1a5caccd7c4bc46a5b802ac4c58d6efd2ed603d6a0d0b17799ce"]')
           
           end_time=$(date +%s%N)
           duration=$((($end_time - $start_time)/1000000))
