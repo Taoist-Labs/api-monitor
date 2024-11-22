@@ -21,34 +21,7 @@ jobs:
           response=$(curl -s -w "\n%{http_code}" -X POST \
             https://spp-indexer.seedao.tech/sns/resolver/get_names \
             -H "Content-Type: application/json" \
-            -d '[
-              "0x2016086159ed1a5caccd7c4bc46a5b802ac4c58d6efd2ed603d6a0d0b17799ce",
-              "0x7832e604c6870f99f7d5a56d98c0e61a63ff16fb48d2f91a42d6e4d43cfbb24e",
-              "0x9daa55e3191b37c5ab907397735409929a16403120c8bc01eff4133223c379c7",
-              "0x32894f0b0f103c80467f3d39fc0f710188c7f4e5318f1fd340836bb2ddb2a042",
-              "0x1e5979b4c32ce92ad725d2aabba8da422450ab4df9975ccd7f015ccd9000d8b3",
-              "0x08d31e4add3bc7d4afc3ef0d00fe021fb0e2973069758ff9ad2e87a44ccf0cbf",
-              "0x4e3e66a1aa6e9379f9261a112b7d9aa1c532224e3f34806391795eec6af86e1d",
-              "0xe8d55ad9312c2d831e72a96c295cb6e0dc7fb168a351595375bb95c1dad7bd3a",
-              "0x518301e3e99ac6cef5897cb9c9847038c27167c4c0a96c5b864983e55f362520",
-              "0xb4d519d81c8788495793acf82f81a7675d6725e13ce0d9834035aab6aed84b01",
-              "0x333f959ec0e96a3647aab5a249ee7dbeda77452ca8bc46faea7704b4c0e19402",
-              "0x8f3f222beb8ae1da4d493d7cefea4b321832c8d880402eae274d3d2ae5239c66",
-              "0xe47ef72a40822c31bbae1a196fb68bac04641f2f3200841c124f8ea40d092c6d",
-              "0x978ee4ec957c710de0e8973cb61096e9efc31f54157b8633fdef0f28a5ff7abd",
-              "0x931da4b87f65816f77a3a91fb8cc567823c19719097da53698db5fbd377121a3",
-              "0x4d7fd94ec3e2f8475e1c0c47b124ee1ca0f40eed2795c9514fd5f9f94ef09935",
-              "0x9251dae86a279c09a6e6d0996629a404750ffe52864292cfeb56eea6af2d7c64",
-              "0x4651d2d4a9570dbd3ab8a87dc3d89b299b6cc61d0a4defc410eb823c9a5bd820",
-              "0xae676295ac12d79d83f4a6653800611ccca756f5dc079ca9f200e8ff8748cced",
-              "0x956fc0baac0cec09a40083ed5500005e6cbe53f1d9fbcfe390b88457f82ab2a7",
-              "0x6c29024c7d4d58a3af2c8f6e101520e337c35b8eb75756be137be9ef0d47570c",
-              "0xe83f05c13d9680eb70582f684b33a80f003be2472465dad24a414e68f116fad3",
-              "0x094c97c38ad2cb85b098fb8f6fa33010281b15a2def6d6bf85782ab545153546",
-              "0xb9418b1add09d848120f5b743017cca289ab90ddd2c4b473a9298142a101ed38",
-              "0x990d03d0d3ac933868ffb1a968348b513f63174bcc1800c6dc9046713f3a73e6",
-              "0xc0a35056b1cf27e180fa1d79d71fbcb9a6e78f2626cba21079ea6b606622c945"
-            ]')
+            -d '["0x2016086159ed1a5caccd7c4bc46a5b802ac4c58d6efd2ed603d6a0d0b17799ce"]')
           
           end_time=$(date +%s%N)
           duration=$((($end_time - $start_time)/1000000))
