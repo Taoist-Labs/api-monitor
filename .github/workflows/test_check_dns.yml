@@ -1,4 +1,4 @@
-name: API Status Monitor | SNS sns/resolver/get_names
+name: Check Dns
 
 on:
   schedule:
