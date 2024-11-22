@@ -1,4 +1,4 @@
-name: API Status Monitor | SNS sns/resolver/get_names
+name: API Status Monitor | SNS cityhall/cs_node
 
 on:
   schedule:
@@ -13,8 +13,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Check cs_node API Status and Monitor Response Time
-        id: cs_node api check
+      - name: Check API Status and Monitor Response Time
+        id: api_check
         run: |
           start_time=$(date +%s%N)
           
